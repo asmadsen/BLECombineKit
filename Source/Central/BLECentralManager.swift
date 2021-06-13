@@ -13,6 +13,7 @@ import Combine
 public protocol BLECentralManager: AnyObject {
     var centralManager: CBCentralManagerWrapper { get }
     var isScanning: Bool { get }
+    var state: CurrentValueSubject<ManagerState, Never> { get }
     
     func retrievePeripherals(withIdentifiers identifiers: [UUID]) -> AnyPublisher<BLEPeripheral, BLEError>
     func retrieveConnectedPeripherals(withServices serviceUUIDs: [CBUUID]) -> AnyPublisher<BLEPeripheral, BLEError>
@@ -26,7 +27,6 @@ public protocol BLECentralManager: AnyObject {
 }
 
 final class StandardBLECentralManager: BLECentralManager {
-    
     let centralManager: CBCentralManagerWrapper
     let peripheralBuilder: BLEPeripheralBuilder
     

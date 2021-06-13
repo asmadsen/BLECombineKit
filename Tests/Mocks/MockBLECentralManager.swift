@@ -12,6 +12,8 @@ import BLECombineKit
 import Combine
 
 final class MockBLECentralManager: BLECentralManager {
+
+    var state = CurrentValueSubject<ManagerState, Never>(ManagerState.poweredOn)
     
     var centralManager: CBCentralManagerWrapper = MockCBCentralManagerWrapper()
     
